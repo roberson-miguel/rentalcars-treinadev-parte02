@@ -1,0 +1,16 @@
+<dl class="row">
+  <dt class="col-sm-3">Categoria: </dt>
+  <dd class="col-sm-9"><%= @category.name %></dd>
+
+  <dt class="col-sm-3">Diária padrão: </dt>
+  <dd class="col-sm-9"><%= @category.daily_rate%></dd>
+
+  <dt class="col-sm-3">Seguro padrão do carro: </dt>
+  <dd class="col-sm-9"><%= @category.car_insurance %></dd>
+
+  <dt class="col-sm-3">Seguro padrão contra terceiros: </dt>
+  <dd class="col-sm-9"><%= @category.third_party_insurance%></dd>
+
+</dl>
+
+<%= link_to 'Editar', edit_category_path %>
