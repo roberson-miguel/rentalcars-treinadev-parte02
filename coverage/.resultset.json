@@ -98,8 +98,6 @@
         2,
         1,
         null,
-        1,
-        null,
         null,
         null,
         1,
@@ -110,6 +108,13 @@
       ],
       "/Users/treinadev04/treinadev/rentalcars-treinadev-parte02/app/controllers/api/v1/api_controller.rb": [
         1,
+        1,
+        null,
+        1,
+        null,
+        1,
+        1,
+        null,
         null
       ],
       "/Users/treinadev04/treinadev/rentalcars-treinadev-parte02/app/mailers/application_mailer.rb": [
@@ -1032,6 +1037,6 @@
         0
       ]
     },
-    "timestamp": 1579654237
+    "timestamp": 1579734311
   }
 }
