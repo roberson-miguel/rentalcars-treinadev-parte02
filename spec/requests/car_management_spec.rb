@@ -48,4 +48,54 @@ describe 'Car Management' do
       expect(json[1][:subsidiary_id]).to eq(cars[1].subsidiary_id)
     end
   end
+
+  context 'create' do
+    it 'create a car correctly' do
+      subsidiary = create(:subsidiary)
+      car_model = create(:car_model)
+      
+      post api_v1_cars_path, params: {car_model_id: car_model.id, subsidiary_id: subsidiary.id, 
+                                      car_km: 123, license_plate: 'abs-1223', color: 'azul'}
+      
+      json = JSON.parse(response.body, symbolize_names: true)
+
+      expect(response).to have_http_status(201)
+      expect(json[:car_model_id]).to eq(car_model.id)
+      expect(json[:subsidiary_id]).to eq(subsidiary.id)
+      expect(json[:car_km]).to eq(123)
+      expect(json[:license_plate]).to eq('abs-1223')
+      expect(json[:color]).to eq('azul')
+
+      car = Car.last
+      expect(car.license_plate).to eq('abs-1223')
+
+    end
+
+    it 'car without all validations' do
+      subsidiary = create(:subsidiary)
+      car_model = create(:car_model)
+      
+      post api_v1_cars_path, params: {}
+      
+      expect(response).to have_http_status(412)
+
+    end
+
+    it 'car update' do
+      car = create(:car)
+      put api_v1_car_path(car), params: {car_model_id: car.car_model_id, subsidiary_id: car.subsidiary_id, 
+                                      car_km: 123, license_plate: 'xxx-1223', color: 'azul'}
+
+      json = JSON.parse(response.body, symbolize_names: true)
+      
+      expect(response).to have_http_status(200)
+      expect(json[:car_model_id]).to eq(car.car_model_id)
+      expect(json[:subsidiary_id]).to eq(car.subsidiary_id)
+      expect(json[:car_km]).to eq(123)
+      expect(json[:license_plate]).to eq('xxx-1223')
+      expect(json[:color]).to eq('azul')
+
+    end
+
+  end
 end
