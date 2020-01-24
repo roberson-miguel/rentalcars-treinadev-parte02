@@ -28,5 +28,12 @@ class Api::V1::CarsController < Api::V1::ApiController
       render json: 'error', status: 412 
     end
   end
+
+  def destroy
+    @car = Car.find(params[:id])
+    if @car.destroy
+      render json: {message: "Car delete with Successfully."}, status: 200
+    end
+  end
   
 end

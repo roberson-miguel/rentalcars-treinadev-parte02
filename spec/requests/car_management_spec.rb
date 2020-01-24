@@ -98,4 +98,30 @@ describe 'Car Management' do
     end
 
   end
+
+  context 'delete' do
+    it 'Should delete a car correctly' do
+      car1 = create(:car)
+
+      delete api_v1_car_path(car1)
+
+      json = JSON.parse(response.body, symbolize_names: true)
+
+      expect(response).to have_http_status(200)
+      expect(json[:message]).to eq("Car delete with Successfully.")
+     
+    end
+
+    it 'Should delete one car correctly' do
+      car1 = create(:car)
+      car2 = create(:car)
+
+      delete api_v1_car_path(car1)
+
+      cars = Car.all
+
+      expect(cars).not_to include(car1)
+      expect(cars).to include(car2)
+    end
+  end
 end
