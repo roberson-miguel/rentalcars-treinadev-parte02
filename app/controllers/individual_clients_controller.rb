@@ -18,6 +18,7 @@ class IndividualClientsController < ApplicationController
     @individual_client = IndividualClient.new(individual_client_params)
     if @individual_client.save
       redirect_to @individual_client
+      ClientMailer.welcome(@individual_client.id)
     else
       render :new
     end

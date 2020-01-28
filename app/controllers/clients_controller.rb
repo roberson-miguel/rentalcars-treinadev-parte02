@@ -10,6 +10,7 @@ class ClientsController < ApplicationController
     @client = Client.new(client_params)
     if @client.save
       redirect_to @client
+
     else
       render :new
     end
