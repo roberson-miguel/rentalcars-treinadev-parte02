@@ -71,8 +71,8 @@ feature 'User register individual client' do
     user = create(:user, role: :user)
     login_as user, scope: :user
 
-    mailer_spy = class_spy(ClientMailer)
-    stub_const('ClientMailer', mailer_spy)
+    mailer_spy = class_spy(IndividualClientsMailer)
+    stub_const('IndividualClientsMailer', mailer_spy)
 
     visit root_path
     click_on 'Clientes individuais'
@@ -88,9 +88,9 @@ feature 'User register individual client' do
     fill_in 'Estado', with: 'SP'
     click_on 'Enviar'
 
-    client = Client.last
+    client = IndividualClient.last
 
-    expect(ClientMailer).to have_received(:welcome).with(client.id)
+    expect(IndividualClientsMailer).to have_received(:welcome).with(client.id)
 
   end
 end
